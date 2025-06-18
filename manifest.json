@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "GPT Helper",
+  "description": "Use ChatGPT to enhance Google search and YouTube.",
+  "version": "0.1",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": [
+    "https://api.openai.com/*",
+    "https://www.youtube.com/*",
+    "https://www.google.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "options.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.com/search*"],
+      "js": ["content.js"]
+    },
+    {
+      "matches": ["https://www.youtube.com/watch*"],
+      "js": ["youtube.js"]
+    }
+  ],
+  "options_page": "options.html"
+}
